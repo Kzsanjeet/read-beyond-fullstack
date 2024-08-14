@@ -24,11 +24,12 @@ function Content() {
     // const myCourse = courses.find((course) => {
     //   return course.price === 199.99;
     // });
-  
 
-    const myCourse = courses.filter((course) => {
-       return course.isPaid === true
-    });
+    const myCourse = courses.filter((course)=>{
+      return course.likes >= 1400
+    })
+
+    
 
     // If a course with the price 199.99 is found, wrap it in an array
     if (myCourse) {
@@ -51,7 +52,7 @@ function Content() {
           <div className="flex flex-wrap -m-4">
             {viewCourses.map((course) => (
               <div key={course.id} className="lg:w-1/4 md:w-1/2 p-4 w-full">
-                <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out h-[450px]">
+                <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out h-[420px] bg-gray-200">
                   <a className="block relative h-48 w-full rounded-t-lg overflow-hidden">
                     <img
                       alt="ecommerce"
@@ -62,11 +63,11 @@ function Content() {
                   <div className="p-4 h-[202px] flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm text-gray-500">{course.duration}</span>
-                        <span className="text-sm text-gray-500">{course.likes} Likes</span>
+                        <span className="text-sm text-gray-500 hover:text-blue-600">{course.duration}</span>
+                        <span className="text-sm text-gray-500 hover:text-blue-600">{course.likes} Likes</span>
                       </div>
                       <h1 className="text-lg font-semibold text-gray-900">{course.title}</h1>
-                      <h3 className="text-xs font-medium text-gray-600 mt-1">{course.category}</h3>
+                      <h3 className="text-xs font-medium text-blue-600 mt-1">{course.category}</h3>
                       <div className="flex items-center mt-2">
                         <span className="text-yellow-500 text-sm">{course.rating} ★</span>
                       </div>
@@ -75,7 +76,7 @@ function Content() {
                       <span className="text-xl font-bold text-gray-900">
                         {course.isPaid ? `$${course.price}` : "Free"}
                       </span>
-                      <button className="text-indigo-500 bg-indigo-100 hover:bg-indigo-200 transition-colors duration-300 rounded-full px-3 py-1 text-sm font-medium">
+                      <button className="bg-blue-500 transition-colors duration-300 rounded-l px-3 py-1 text-sm font-medium text-white hover:text-white">
                         View Course
                       </button>
                     </div>

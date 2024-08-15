@@ -1,0 +1,23 @@
+/* src/components/ui/breadcrumb.css
+.breadcrumb-list {
+    list-style: none;
+    display: flex;
+  }
+  
+  .breadcrumb-item {
+    margin-right: 8px;
+  }
+  
+  .breadcrumb-link {
+    text-decoration: none;
+    color: #0070f3;
+  }
+  
+  .breadcrumb-separator {
+    margin: 0 8px;
+  }
+  
+  .breadcrumb-page {
+    font-weight: bold;
+  }
+   */

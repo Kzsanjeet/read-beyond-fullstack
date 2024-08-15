@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import courses from "../data/courses.json";
+import Link from 'next/link';
 
 interface Course {
   id: number;
@@ -21,27 +22,10 @@ function Content() {
   const [viewCourses, setViewCourses] = useState<Course[]>([]);
 
   useEffect(() => {
-    // const myCourse = courses.find((course) => {
-    //   return course.price === 199.99;
-    // });
-
-    const myCourse = courses.filter((course)=>{
-      return course.likes >= 1400
-    })
-
-    
-
-    // If a course with the price 199.99 is found, wrap it in an array
-    if (myCourse) {
-      setViewCourses(myCourse);
-    } else {
-      setViewCourses([]); // If not found, set an empty array
-    }
-
-   
-    // setViewCourses(myCourses);
-    //lksldnc
+    const myCourse = courses.filter((course) => course.likes >= 1400);
+    setViewCourses(myCourse);
   }, []);
+
   return (
     <div>
       <div className="text-center text-2xl font-extrabold mb-6">
@@ -55,7 +39,7 @@ function Content() {
                 <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out h-[420px] bg-gray-200">
                   <a className="block relative h-48 w-full rounded-t-lg overflow-hidden">
                     <img
-                      alt="ecommerce"
+                      alt="course"
                       className="object-cover object-center w-full h-full block"
                       src={course.image}
                     />
@@ -76,9 +60,11 @@ function Content() {
                       <span className="text-xl font-bold text-gray-900">
                         {course.isPaid ? `$${course.price}` : "Free"}
                       </span>
-                      <button className="bg-blue-500 transition-colors duration-300 rounded-l px-3 py-1 text-sm font-medium text-white hover:text-white">
-                        View Course
-                      </button>
+                      <Link href={"/courseDetails"}>
+                        <button className="bg-blue-500 transition-colors duration-300 rounded-l px-3 py-1 text-sm font-medium text-white hover:text-white">
+                          View Course
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

@@ -1,76 +1,70 @@
-/* button {
-    z-index: 1;
-    position: relative;
-    font-size: inherit;
-    font-family: inherit;
-    color: black;
-    padding: 0.5em 1em;
-    outline: none;
-    border: none;
-    background-color: hsl(221, 85%, 82%);
-    overflow: hidden;
-    transition: color 0.4s ease-in-out;
-  }
-  
-  button::before {                                                                                                                                          
-    content: '';
-    z-index: -1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    background-color: #3159df;
-    transform-origin: center;
-    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
-    transition: transform 0.45s ease-in-out;
-  }
-  
-  button:hover {
-    cursor: pointer;
-    color: #161616;
-  }
-  
-  button:hover::before {
-    transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
-  } */
+#loginBtn {
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 91%, 63%);
+}
 
-  
+#loginBtn::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsl(236, 95%, 50%);
+  transform-origin: center right;
+  transform: scaleX(0);
+  transition: transform 0.25s ease-in-out;
+}
 
-  button {
-    z-index: 1;
-    position: relative;
-    font-size: inherit;
-    font-family: inherit;
-    color: black;
-    padding: 0.5em 1em;
-    outline: none;
-    border: none;
-    background-color: hsl(221, 85%, 82%);
-  }
-  
-  button::before {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #3159df;
-    transform-origin: center right;
-    transform: scaleX(0);
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  button:hover {
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover::before {
-    transform-origin: center left;
-    transform: scaleX(1);
-  }
-  
+#loginBtn:hover {
+  cursor: pointer;
+}
+
+#loginBtn:hover::before {
+  transform-origin: center left;
+  transform: scaleX(1);
+}
+
+
+#viewCourse {
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 91%, 63%);
+}
+
+#viewCourse::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsl(236, 95%, 50%);
+  transform-origin: center right;
+  transform: scaleX(0);
+  transition: transform 0.25s ease-in-out;
+}
+
+#viewCourse:hover {
+  cursor: pointer;
+}
+
+#viewCourse:hover::before {
+  transform-origin: center left;
+  transform: scaleX(1);
+}

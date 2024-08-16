@@ -60,8 +60,8 @@ function Content() {
                       <span className="text-xl font-bold text-gray-900">
                         {course.isPaid ? `$${course.price}` : "Free"}
                       </span>
-                      <Link href={"/courseDetails"}>
-                        <button className="bg-blue-500 transition-colors duration-300 rounded-l px-3 py-1 text-sm font-medium text-white hover:text-white">
+                      <Link href={`/courseDetails/${course.slug}`}>
+                        <button className="bg-blue-500 transition-colors duration-300 rounded-l px-3 py-1 text-sm font-medium text-white hover:text-white" id='viewCourse'>
                           View Course
                         </button>
                       </Link>

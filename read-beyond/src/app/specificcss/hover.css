@@ -1,4 +1,4 @@
-span {
+/* span {
     position: relative;
   }
   
@@ -31,4 +31,4 @@ span {
   span:hover::after {
     transform-origin: center top;
     transform: scaleY(1);
-  }
+  } */

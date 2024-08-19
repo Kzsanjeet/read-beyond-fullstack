@@ -2,7 +2,6 @@
 
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-; // Ensure this is correctly imported
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,37 +10,36 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-
-// import courses from "../data/courses.json"; // Ensure this is correctly imported
-import courses from "@/app/data/courses.json"
+import courses from "@/app/data/courses.json";
 import Nabbar from '@/app/pComponent/nabbar';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 import Footer from '@/app/pComponent/Footer';
+import Link from 'next/link';  // Correct import for Link
 
 interface Course {
-  id: number;
-  title: string;
-  category: string;
-  image: string;
-  price: number;
-  likes: number;
-  rating: number;
-  instructor: string;
-  description: string;
-  duration: string;
-  slug: string;
-  students_enrolled: number;
-  course_views: number;
-  course_level: string;
-  provider: string;
-  topics: { id: number; name: string; description: string }[];
-  learning_outcomes: string[];
-  isPaid: boolean;
+    id: number;
+    title: string;
+    category: string;
+    image: string;
+    price: number;
+    likes: number;
+    rating: number;
+    instructor: string;
+    description: string;
+    duration: string;
+    slug: string;
+    students_enrolled: number;
+    course_views: number;
+    course_level: string;
+    provider: string;
+    topics: { id: number; name: string; description: string }[];
+    learning_outcomes: string[];
+    isPaid: boolean;
 }
 
 const CourseDetails = () => {
@@ -50,9 +48,9 @@ const CourseDetails = () => {
 
   useEffect(() => {
     if (slug) {
-      const myCourse = courses.filter((courseSlug) => courseSlug.slug === slug);
+      const myCourse = courses.filter((course) => course.slug === slug);
       setViewCourses(myCourse);
-      console.log(myCourse)
+      console.log(myCourse);
     }
   }, [slug]);
 
@@ -77,165 +75,110 @@ const CourseDetails = () => {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
-        {viewCourses.map((course, index) => {
-          return (
-            <div key={index} className="mb-6">
-              <h1 className='text-3xl font-semibold mb-5 mt-5'>{course.provider}</h1>
-              <div className="mb-6">
-                <h1 className="text-3xl font-bold text-gray-800">{course.title}</h1>
-                <p className="text-gray-600 mt-2">{course.description}</p>
-              </div>
+        {viewCourses.map((course) => (
+          <div key={course.id} className="mb-6">
+            <h1 className='text-3xl font-semibold mb-5 mt-5'>{course.provider}</h1>
+            <div className="mb-6">
+              <h1 className="text-3xl font-bold text-gray-800">{course.title}</h1>
+              <p className="text-gray-600 mt-2">{course.description}</p>
+            </div>
 
-              <div className="mb-4">
-                <p className="text-lg font-semibold text-gray-700">
-                  {course.instructor} <span className="text-sm text-gray-50 bg-blue-400 pt-1.5 pb-1.5 pr-1.5 pl-1.5 rounded-lg">- Head Instructor</span>
-                </p>
-              </div>
+            <div className="mb-4">
+              <p className="text-lg font-semibold text-gray-700">
+                {course.instructor} <span className="text-sm text-gray-50 bg-blue-400 pt-1.5 pb-1.5 pr-1.5 pl-1.5 rounded-lg">- Head Instructor</span>
+              </p>
+            </div>
 
-              <div className="mb-4">
-                <p className="text-2xl  font-semibold">Rs {course.price}</p>
+            <div className="mb-4">
+              <p className="text-2xl font-semibold">Rs {course.price}</p>
+              <Link href={`/${course.slug}/enroll`}>
                 <button
                   className="mt-3 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
                   id='loginBtn'
                 >
                   Enroll Now
                 </button>
-                <p className="text-gray-600 mt-2">{course.students_enrolled} students joined</p>
+              </Link>
+              <p className="text-gray-600 mt-2">{course.students_enrolled} students joined</p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-blue-500 cursor-pointer underline">Add to wishlist</p>
+            </div>
+
+            <div className="p-4 rounded-lg">
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold">About course</h3>
+                <p className="text-gray-600 mt-2">Explore more about the course.</p>
               </div>
 
-              <div className="mb-6">
-                <p className="text-blue-500 cursor-pointer underline">Add to wishlist</p>
-              </div>
-
-              <div className="p-4 rounded-lg">
+              <div className='flex'>
                 <div className="mb-4">
-                  <h3 className="text-xl font-semibold">About course</h3>
-                  <p className="text-gray-600 mt-2">Explore more about the course.</p>
+                  <h3 className="text-xl font-semibold">{course.duration}</h3>
+                  <p className="text-gray-600 mt-2">Learn at your suitable time.</p>
                 </div>
 
-                <div className='flex'>
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">{course.duration}</h3>
-                    <p className="text-gray-600 mt-2">Learn at your suitable time.</p>
-                  </div>
-
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">{course.course_level}</h3>
-                    <p className="text-gray-600 mt-2">Nothing is impossible.</p>
-                  </div>
-
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">{course.rating} Rating</h3>
-                    <p className="text-gray-600 mt-2">Rating by students.</p>
-                  </div>
-
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">{course.topics.length} Topics</h3>
-                    <p className="text-gray-600 mt-2">Total number of topics covered in this course.</p>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold">{course.course_level}</h3>
+                  <p className="text-gray-600 mt-2">Nothing is impossible.</p>
                 </div>
 
-                <div>
-                  <h3 className="text-xl font-semibold">Why learn this course?</h3>
-                  <ul className="list-disc list-inside text-gray-600 mt-2">
-                    {course.learning_outcomes.map((outcome, idx) => (
-                      <li key={idx}>{outcome}</li>
-                    ))}
-                  </ul>
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold">{course.rating} Rating</h3>
+                  <p className="text-gray-600 mt-2">Rating by students.</p>
                 </div>
-                <div className='bg-gray-50 w-full'>
-                  <section className="text-gray-600 body-font">
-                    <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center bg-gray-200 shadow-lg mt-4 mb-5 rounded-lg h-96">
-                      <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Certificate of Achievement</h1>
-                        <p className="mb-8 leading-relaxed">Upon successful completion of this course, you will be awarded a Certificate of Achievement, acknowledging your dedication and hard work.</p>
-                        <p className='text-gray-400'>Showcase your talent and expertise with the Certificate you earned thourgh completing this course.</p>
-                      </div>
 
-                      {/* <div className="lg:max-w-sm lg:w-[calc(100%-4px)] md:w-2/3 w-4/5 shadow-lg">
-                        <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" />
-                      </div> */}
-                      <div className="lg:max-w-sm lg:w-[calc(100%-4px)] md:w-2/3 w-4/5 shadow-lg">
-                        <img
-                          className="object-cover object-center rounded"
-                          alt="hero"
-                          src="/images/certi.png"
-                          style={{ height: 'calc(100% - 50px)' }}  // Decrease height by 50px
-                        />
-                      </div>
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold">{course.topics.length} Topics</h3>
+                  <p className="text-gray-600 mt-2">Total number of topics covered in this course.</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold">Why learn this course?</h3>
+                <ul className="list-disc list-inside text-gray-600 mt-2">
+                  {course.learning_outcomes.map((outcome, idx) => (
+                    <li key={idx}>{outcome}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className='bg-gray-50 w-full'>
+                <section className="text-gray-600 body-font">
+                  <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center bg-gray-200 shadow-lg mt-4 mb-5 rounded-lg h-96">
+                    <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                      <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Certificate of Achievement</h1>
+                      <p className="mb-8 leading-relaxed">Upon successful completion of this course, you will be awarded a Certificate of Achievement, acknowledging your dedication and hard work.</p>
+                      <p className='text-gray-400'>Showcase your talent and expertise with the Certificate you earned through completing this course.</p>
                     </div>
-                  </section>
-                </div>
-                {/* <div className='flex flex-col'>
-                  <div>
-                    <h2>Explore the summary of the course- 3 topics</h2>
-                  </div>
-                  <div>
-                    <div className='flex flex-row justify-between'>
-                      <h3>Introduction to AI</h3>
-                      <div className='flex justify-evenly'>
-                        <p>2 videos</p>
-                        <p>320 likes</p>
-                        <p>2000 views</p>
-                      </div>
-                    </div>
-                    <div className='flex flex-row justify-between'>
-                      <h3>Knowledege Representation</h3>
-                      <div className='flex justify-evenly'>
-                        <p>2 videos</p>
-                        <p>320 likes</p>
-                        <p>2000 views</p>
-                      </div>
-                    </div>
-                    <div className='flex flex-row justify-between'>
-                      <h3>Problem-Solving Techniques</h3>
-                      <div className='flex justify-evenly'>
-                        <p>2 videos</p>
-                        <p>320 likes</p>
-                        <p>2000 views</p>
-                      </div>
+
+                    <div className="lg:max-w-sm lg:w-[calc(100%-4px)] md:w-2/3 w-4/5 shadow-lg">
+                      <img
+                        className="object-cover object-center rounded"
+                        alt="hero"
+                        src="/images/certi.png"
+                        style={{ height: 'calc(100% - 50px)' }}  // Decrease height by 50px
+                      />
                     </div>
                   </div>
-                </div> */}
-                <div>
-                  <div>
-                    <h2>Explore the summary of the course- 3 topics</h2>
-                  </div>
-                  <div>
-                    <Accordion type="single" collapsible>
-                      <AccordionItem value="item-1">
-                        <AccordionTrigger>Introduction to AI</AccordionTrigger>
-                        <AccordionContent>
-                          Yes. It adheres to the WAI-ARIA design pattern.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div>
-                  <div>
-                    <Accordion type="single" collapsible>
-                      <AccordionItem value="item-1">
-                        <AccordionTrigger>Knowledege Representation</AccordionTrigger>
-                        <AccordionContent>
-                          Yes. It adheres to the WAI-ARIA design pattern.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div>
-                  <div>
-                    <Accordion type="single" collapsible>
-                      <AccordionItem value="item-1">
-                        <AccordionTrigger>Problem Solving</AccordionTrigger>
-                        <AccordionContent>
-                          Yes. It adheres to the WAI-ARIA design pattern.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div>
-                </div>
+                </section>
+              </div>
+
+              <div>
+                <h2>Explore the summary of the course- {course.topics.length} topics</h2>
+                <Accordion type="single" collapsible>
+                  {course.topics.map((topic) => (
+                    <AccordionItem key={topic.id} value={`item-${topic.id}`}>
+                      <AccordionTrigger>{topic.name}</AccordionTrigger>
+                      <AccordionContent>
+                        {topic.description}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
       <Footer/>
     </div>

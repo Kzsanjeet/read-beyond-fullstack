@@ -91,7 +91,7 @@ const CourseDetails = () => {
 
             <div className="mb-4">
               <p className="text-2xl font-semibold">Rs {course.price}</p>
-              <Link href={`/${course.slug}/enroll`}>
+              <Link href={`/courseDetails/${slug}/enroll`}>
                 <button
                   className="mt-3 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
                   id='loginBtn'

@@ -100,12 +100,10 @@ function Nabbar() {
                           >
                             {/* <Icons.logo className="h-6 w-6" /> */}
                             <div className="mb-2 mt-4 text-lg font-medium">
-                              shadcn/ui
+                              readBeyond
                             </div>
                             <p className="text-sm leading-tight text-muted-foreground">
-                              Beautifully designed components that you can copy and
-                              paste into your apps. Accessible. Customizable. Open
-                              Source.
+                             The great platform for studetns to learn skills and get Certificates.
                             </p>
                           </a>
                         </NavigationMenuLink>

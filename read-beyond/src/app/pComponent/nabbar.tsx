@@ -103,7 +103,7 @@ function Nabbar() {
                               readBeyond
                             </div>
                             <p className="text-sm leading-tight text-muted-foreground">
-                             The great platform for studetns to learn skills and get Certificates.
+                             The great platform for studetns to learn skills and get Certificates.  
                             </p>
                           </a>
                         </NavigationMenuLink>
@@ -121,7 +121,7 @@ function Nabbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                  <NavigationMenuTrigger>Courses</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                       {components.map((component) => (

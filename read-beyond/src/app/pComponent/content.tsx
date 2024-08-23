@@ -9,7 +9,7 @@ interface Course {
   category: string;
   image: string;
   price: number;
-  likes: number;
+  likes: number;  
   rating: number;
   duration: string;
   slug: string;

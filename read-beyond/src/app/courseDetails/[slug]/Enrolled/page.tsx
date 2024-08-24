@@ -37,6 +37,7 @@ interface Course {
 const SidebarTopic = () => {
   const [sideMenu, setSideMenu] = useState<Course[]>([]);
   const [selectedTopic, setSelectedTopic] = useState<number | null>(null); // Track the selected topic ID
+  const [viewTopic,setViewTopic] = useState([])
   const { slug } = useParams();
 
   useEffect(() => {
@@ -55,7 +56,7 @@ const SidebarTopic = () => {
   // Determine which component to render based on selectedTopic
   const renderContent = () => {
     switch (selectedTopic) {
-      case 1: // Assuming topicId 1, 2, 3 for different topics
+      case 1: 
       case 2:
       case 3:
         return <SelectedTopicDetails topicId={selectedTopic} />;
@@ -134,3 +135,6 @@ const SidebarTopic = () => {
 };
 
 export default SidebarTopic;
+
+
+

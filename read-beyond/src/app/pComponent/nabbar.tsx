@@ -19,6 +19,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import React from 'react';
+import{Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar"
 
 
 
@@ -157,8 +158,8 @@ function Nabbar() {
             <FaSearch className="text-blue-600" />
           </div>
 
-          <Link href="/login">
-            <button className="inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none bg-blue-500 hover:bg-blue-500 hover:text-white rounded text-base mt-4 md:mt-0 ml-4" id='loginBtn'>
+          <Link href="/profile">
+            {/* <button className="inline-flex items-center text-white border-0 py-1 px-3 focus:outline-none bg-blue-500 hover:bg-blue-500 hover:text-white rounded text-base mt-4 md:mt-0 ml-4" id='loginBtn'>
               Login
               <svg
                 fill="none"
@@ -172,7 +173,15 @@ function Nabbar() {
               >
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
-            </button>
+            </button> */}
+
+            <div className='ml-6'>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            </div>
+
           </Link>
         </div>
       </header>

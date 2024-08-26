@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import {
   Accordion,
@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"; // Assuming you're using this accordion component
 import { useParams } from 'next/navigation';
-import courses from "@/app/data/courses.json"
+import courses from "@/app/data/courses.json";
 import Nabbar from '@/app/pComponent/nabbar';
 import Footer from '@/app/pComponent/Footer';
 import AboutTopicDetails from '@/app/pComponent/AboutTopic'; 
@@ -36,8 +36,9 @@ interface Course {
 
 const SidebarTopic = () => {
   const [sideMenu, setSideMenu] = useState<Course[]>([]);
-  const [selectedTopic, setSelectedTopic] = useState<number | null>(null); // Track the selected topic ID
-  const [viewTopic,setViewTopic] = useState([])
+  const [selectedTopicId, setSelectedTopicId] = useState<number | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  
   const { slug } = useParams();
 
   useEffect(() => {
@@ -46,23 +47,22 @@ const SidebarTopic = () => {
   }, [slug]);
 
   const handleShowDetails = () => {
-    setSelectedTopic(null); // Toggle the visibility of AboutTopicDetails
+    setSelectedTopic("about-course"); // Show the about course section
   };
 
-  const handleSelectedDetails = (topicId:number) =>{
-    setSelectedTopic(topicId); // Toggle the visibility of SelectedTopicDetails
-  }
+  const handleSelectedDetails = (topicId: number) => {
+    setSelectedTopicId(topicId); // Set the selected topic ID
+    setSelectedTopic("topic"); // Show the selected topic details
+  };
 
   // Determine which component to render based on selectedTopic
   const renderContent = () => {
-    switch (selectedTopic) {
-      case 1: 
-      case 2:
-      case 3:
-        return <SelectedTopicDetails topicId={selectedTopic} />;
-      default:
-        return <AboutTopicDetails />;
+    if (selectedTopic === "topic" && selectedTopicId !== null) {
+      return <SelectedTopicDetails topicId={selectedTopicId} />;
+    } else if (selectedTopic === "about-course") {
+      return <AboutTopicDetails />;
     }
+    return <AboutTopicDetails />;
   };
 
   return (
@@ -78,12 +78,13 @@ const SidebarTopic = () => {
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   {course.title}
                 </h2>
-                <h2 className="text-xl">Topics</h2>
+                <h2 className="text-xl mb-4">Topics</h2>
                 <Accordion type="single" collapsible>
                   {course.topics.map((topic) => (
                     <AccordionItem key={topic.id} value={`item-${topic.id}`}>
-                      <AccordionTrigger className="text-lg font-semibold text-indigo-600 hover:underline"
-                      onClick={()=> handleSelectedDetails(topic.id)}  //handle topic selection
+                      <AccordionTrigger
+                        className="text-lg font-semibold text-indigo-600 hover:underline"
+                        onClick={() => handleSelectedDetails(topic.id)}  // Handle topic selection
                       >
                         {topic.name}
                       </AccordionTrigger>
@@ -94,7 +95,7 @@ const SidebarTopic = () => {
                     </AccordionItem>
                   ))}
                 </Accordion>
-                <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="grid grid-cols-2 gap-4 mb-8 mt-4">
                   <div className="text-gray-700">
                     <p className="font-semibold">Started on:</p>
                     <p className="text-gray-600">2021-09-01</p>
@@ -122,11 +123,11 @@ const SidebarTopic = () => {
               </div>
             ))}
           </div>
-          {/* Render the appropriate content based on selectedTopic */}
-          <div>
+          
+          {/* Right section (remaining 60%) */}
+          <div className="md:w-3/4 w-full p-6 bg-white shadow-lg rounded-lg">
             {renderContent()}
           </div>
-          
         </div>
       </div>
       <Footer />
@@ -135,6 +136,3 @@ const SidebarTopic = () => {
 };
 
 export default SidebarTopic;
-
-
-

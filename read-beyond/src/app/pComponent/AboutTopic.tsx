@@ -55,7 +55,7 @@ const AboutTopicDetails = () => {
   return (
     <>
     {/* Right section covering the remaining space */}
-    <div className="md:w-3/4 w-full p-2 max-h-[600px] overflow-y-auto">
+    <div className=" w-full p-2 max-h-[600px] overflow-y-auto">
           {enrollCourse.map((course) => (
             <React.Fragment key={course.id}>
               <div className="mb-8">

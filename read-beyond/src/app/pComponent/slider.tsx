@@ -33,6 +33,7 @@
 
 import React from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import "../specificcss/buttonHover.css"
 
 function Slider() {
   return (
@@ -50,7 +51,7 @@ function Slider() {
                     </h1>
                     <p className="mb-8 leading-relaxed">Learn and explore more about our newly lunched Data Science course from beginners to advance level and go beyond.</p>
                     <div className="flex justify-center">
-                    <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex bg-blue-500 hover:text-white text-white border-0 py-2 px-6 focus:outline-none rounded">Explore</button>
+                    <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex hover:text-white text-white border-0 py-2 px-6 focus:outline-none rounded" id='exploreButton'>Explore</button>
                     </div>
                   </div>
                   <div className="lg:max-w-lg lg:w-full md:w-1/2 w-4/5">
@@ -69,7 +70,7 @@ function Slider() {
                     </h1>
                     <p className="mb-8 leading-relaxed">Learn and explore more about our newly lunched Data Analysis course from beginners to advance level and go beyond.</p>
                     <div className="flex justify-center">
-                    <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex bg-blue-500 hover:text-white text-white border-0 py-2 px-6 focus:outline-none rounded">Explore</button>                    </div>
+                    <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex bg-blue-600 hover:text-white hover:bg-blue-700 text-white border-0 py-2 px-6 focus:outline-none rounded" id='exploreButton'>Explore</button>                    </div>
                   </div>
                   <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
                     <img className="object-cover object-center rounded w-full h-full" alt="hero" src="/images/c2.jpeg"/>
@@ -87,7 +88,7 @@ function Slider() {
                     </h1>
                     <p className="mb-8 leading-relaxed"> Learn and explore more about our newly lunched Artificial Intelligence course from beginners to advance level and go beyond.</p>
                     <div className="flex justify-center">
-                    <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex bg-blue-500 hover:text-white text-white border-0 py-2 px-6 focus:outline-none rounded">Explore</button>
+                    <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex bg-blue-600 hover:text-white hover:bg-blue-700 text-white border-0 py-2 px-6 focus:outline-none rounded" id='exploreButton'>Explore</button>
                     </div>
                   </div>
                   <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">

@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import courses from "../data/courses.json";
 import Link from 'next/link';
+import { AiFillLike } from "react-icons/ai";
+
 
 interface Course {
   id: number;
@@ -36,7 +38,7 @@ function Content() {
           <div className="flex flex-wrap -m-4">
             {viewCourses.map((course) => (
               <div key={course.id} className="lg:w-1/4 md:w-1/2 p-4 w-full">
-                <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out h-[420px] bg-gray-200">
+                <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out h-[420px] bg-gray-200">
                   <a className="block relative h-48 w-full rounded-t-lg overflow-hidden">
                     <img
                       alt="course"
@@ -46,10 +48,14 @@ function Content() {
                   </a>
                   <div className="p-4 h-[202px] flex flex-col justify-between">
                     <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm text-gray-500 hover:text-blue-600">{course.duration}</span>
-                        <span className="text-sm text-gray-500 hover:text-blue-600">{course.likes} Likes</span>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-black">{course.duration}</span>
+                      
+                      <div className="flex items-center space-x-1">
+                        <span className="text-sm text-black">{course.likes}</span>
+                        <AiFillLike className="text-sm text-black" />
                       </div>
+                    </div>
                       <h1 className="text-lg font-semibold text-gray-900">{course.title}</h1>
                       <h3 className="text-xs font-medium text-blue-600 mt-1">{course.category}</h3>
                       <div className="flex items-center mt-2">

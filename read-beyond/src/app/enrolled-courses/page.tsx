@@ -11,13 +11,9 @@ const Page = () => {
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Enrolled Courses</h2>
         <div className=" p-6 flex justify-around">
             <div className='flex justify-around'>
-                <Link href={/}>
                     <h3 className="text-2xl font-medium text-indigo-600 mb-4">Paid Courses</h3>
-                </Link>
 
-                <Link>
                 <h3 className="text-2xl font-medium text-indigo-600 mb-4">Free Courses</h3>
-                </Link>
             </div> 
         </div>
       </div>

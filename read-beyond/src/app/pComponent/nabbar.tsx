@@ -25,36 +25,36 @@ import{Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar"
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Alert Dialog",
+    title: "Artificial Intelligence",
     href: "/docs/primitives/alert-dialog",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
-    title: "Hover Card",
+    title: "Machine Learning",
     href: "/docs/primitives/hover-card",
     description:
       "For sighted users to preview content available behind a link.",
   },
   {
-    title: "Progress",
+    title: "Data Science",
     href: "/docs/primitives/progress",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
   {
-    title: "Scroll-area",
+    title: "Quality Assurance",
     href: "/docs/primitives/scroll-area",
     description: "Visually or semantically separates content.",
   },
   {
-    title: "Tabs",
+    title: "MERN Stack",
     href: "/docs/primitives/tabs",
     description:
       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
   },
   {
-    title: "Tooltip",
+    title: "Computer Vision",
     href: "/docs/primitives/tooltip",
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
@@ -66,6 +66,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 // Nabbar Component
 function Nabbar() {
+
   return (
     <>
       <header className="text-gray-600 body-font bg-slate-200">
@@ -78,13 +79,13 @@ function Nabbar() {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
-              className="w-10 h-10 text-white p-2 bg-blue-500 rounded-full"
+              className="w-10 h-10 text-white p-2 bg-blue-700 rounded-full"
               viewBox="0 0 24 24"
               aria-label="Logo"
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span className="ml-3 text-xl text-blue-600 font-bold">readBeyond</span>
+            <span className="ml-3 text-xl text-blue-700 font-bold">readBeyond</span>
           </Link>
           <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
           <NavigationMenu>

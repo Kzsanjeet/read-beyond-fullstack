@@ -13,6 +13,16 @@ import Footer from '@/app/pComponent/Footer';
 import AboutTopicDetails from '@/app/pComponent/AboutTopic'; 
 import SelectedTopicDetails from '@/app/pComponent/SelectedTopicDetails';
 
+import { TiTick } from "react-icons/ti";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
 interface Course {
   id: number;
   title: string;
@@ -69,6 +79,23 @@ const SidebarTopic = () => {
     <div>
       <Nabbar />
       <div className='container mx-auto p-6'>
+      <div>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+      </div> 
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 p-6 bg-gray-50 shadow-xl mx-auto mt-5 w-full">
 
           {/* Left section covering 40% of the screen */}
@@ -125,7 +152,7 @@ const SidebarTopic = () => {
           </div>
           
           {/* Right section (remaining 60%) */}
-          <div className="md:w-3/4 w-full p-6 bg-white shadow-lg rounded-lg">
+          <div className="md:w-3/4 w-full p-6">
             {renderContent()}
           </div>
         </div>

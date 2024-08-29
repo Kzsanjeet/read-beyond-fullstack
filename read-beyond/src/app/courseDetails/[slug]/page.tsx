@@ -20,6 +20,9 @@ import {
 } from "@/components/ui/accordion";
 import Footer from '@/app/pComponent/Footer';
 import Link from 'next/link';  // Correct import for Link
+import { Separator } from '@/components/ui/separator';
+import { FaStarHalfStroke } from "react-icons/fa6";
+import { MdOutlineTopic } from "react-icons/md";
 
 interface Course {
     id: number;
@@ -77,7 +80,7 @@ const CourseDetails = () => {
           </div>
           {viewCourses.map((course) => (
             <div key={course.id} className="mb-6">
-              <h1 className='text-3xl font-semibold mb-5 mt-5'>{course.provider}</h1>
+              <h1 className='text-3xl font-semibold mb-5 mt-5 text-blue-600'>{course.provider}</h1>
               <div className="mb-6">
                 <h1 className="text-3xl font-bold text-gray-800">{course.title}</h1>
                 <p className="text-gray-600 mt-2">{course.description}</p>
@@ -85,12 +88,15 @@ const CourseDetails = () => {
 
               <div className="mb-4">
                 <p className="text-lg font-semibold text-gray-700">
-                  {course.instructor} <span className="text-sm text-gray-50 bg-blue-400 pt-1.5 pb-1.5 pr-1.5 pl-1.5 rounded-lg">- Head Instructor</span>
+                  {course.instructor} <span className="text-sm text-gray-50 bg-blue-500 pt-1.5 pb-1.5 pr-1.5 pl-1.5 rounded-lg">- Head Instructor</span>
                 </p>
               </div>
 
               <div className="mb-4">
-                <p className="text-2xl font-semibold">Rs {course.price}</p>
+                <p className="text-2xl font-semibold">
+                  {/* here we have used a template literals as we have to combine variable with strings */}
+                  {course.price ? `Rs ${course.price}` : "Free"}  
+                </p>
                 <Link href={`/courseDetails/${slug}/Enrolled`}>
                   <button
                     className="mt-3 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
@@ -108,31 +114,35 @@ const CourseDetails = () => {
 
               <div className="p-4 rounded-lg">
                 <div className="mb-4">
-                  <h3 className="text-xl font-semibold">About course</h3>
+                  <h3 className="text-2xl font-semibold">About course</h3>
                   <p className="text-gray-600 mt-2">Explore more about the course.</p>
                 </div>
-
-                <div className='flex'>
+                <div className='flex items-center'>
                   <div className="mb-4">
                     <h3 className="text-xl font-semibold">{course.duration}</h3>
                     <p className="text-gray-600 mt-2">Learn at your suitable time.</p>
                   </div>
-
+                  <Separator orientation='vertical'/>
+                  <div className="h-full w-[1px] bg-gray-300 mx-4" /> {/* Custom Separator */}
                   <div className="mb-4">
                     <h3 className="text-xl font-semibold">{course.course_level}</h3>
                     <p className="text-gray-600 mt-2">Nothing is impossible.</p>
                   </div>
-
+                  <div className="h-full w-[1px] bg-gray-300 mx-4" /> {/* Custom Separator */}
                   <div className="mb-4">
-                    <h3 className="text-xl font-semibold">{course.rating} Rating</h3>
+                    <h3 className="text-xl font-semibold flex items-center gap-2">
+                      {course.rating} <FaStarHalfStroke />
+                    </h3>
                     <p className="text-gray-600 mt-2">Rating by students.</p>
                   </div>
 
+                  <div className="h-full w-[1px] bg-gray-300 mx-4" /> {/* Custom Separator */}
                   <div className="mb-4">
-                    <h3 className="text-xl font-semibold">{course.topics.length} Topics</h3>
+                    <h3 className="text-xl font-semibold flex gap-2 items-center">{course.topics.length} <MdOutlineTopic  /></h3>
                     <p className="text-gray-600 mt-2">Total number of topics covered in this course.</p>
                   </div>
                 </div>
+
 
                 <div>
                   <h3 className="text-xl font-semibold">Why learn this course?</h3>

@@ -15,8 +15,8 @@ import topics from "@/app/data/topics.json";
 import { useParams } from "next/navigation";
 
 import { TiTick } from "react-icons/ti";
-import { RxAvatar } from "react-icons/rx";
-import { AiOutlineLike } from "react-icons/ai";
+import { FaUserCheck } from "react-icons/fa";
+import { AiFillLike } from "react-icons/ai";
 import { BiSolidCommentDots } from "react-icons/bi";
 import { IoMdEye } from "react-icons/io";
 import { MdDateRange } from "react-icons/md";
@@ -92,8 +92,7 @@ const SelectedTopicDetails = ({ topicId }: { topicId: number }) => {
   }
 
   return (
-    <div className="flex justify-center">
-      <ScrollArea className="w-full bg-white p-4 h-full">
+    <div className=" flex flex-col w-full p-2 max-h-[600px] overflow-y-auto">
         {/* Course Title */}
         <div className="mb-4">
           <h1 className="text-3xl font-bold text-gray-800">{course.title}</h1>
@@ -106,25 +105,38 @@ const SelectedTopicDetails = ({ topicId }: { topicId: number }) => {
 
         {/* Instructor and Course Details */}
         <div className="flex flex-wrap items-center space-x-4 mb-8">
+          {/* Add horizontal separator if needed */}
+          {/* <Separator className="w-full mb-2" />  */}
+
           <div className="flex items-center space-x-2">
-            <RxAvatar />
+          <FaUserCheck className="text-blue-700 w-7"/>
             <h2 className="text-lg font-medium text-gray-700">
               {course.instructor}
             </h2>
+            <Separator orientation="vertical" className="h-6 mx-2" />
           </div>
+
           <div className="flex items-center space-x-2">
-            <AiOutlineLike />
+            <AiFillLike  className="text-blue-700" />
             <h2 className="text-gray-700">{course.likes}</h2>
+            <Separator orientation="vertical" className="h-6 mx-2" />
           </div>
+
           <div className="flex items-center space-x-2">
-            <BiSolidCommentDots />
-            <h2 className="text-gray-700">Comments</h2>
+            <BiSolidCommentDots className="text-blue-700" />
+            <h2 className="text-gray-700">44</h2>
+            <Separator orientation="vertical" className="h-6 mx-2" />
           </div>
+
           <div className="flex items-center space-x-2">
-            <IoMdEye />
-            <h2 className="text-gray-700">{course.course_views} views</h2>
+            <IoMdEye className="text-blue-700"/>
+            <h2 className="text-gray-700">{course.course_views}</h2>
           </div>
+
+          {/* Optional horizontal separator at the bottom */}
+          <Separator className="w-full mt-2" /> 
         </div>
+
 
         {/* Course Contents */}
         <div>
@@ -147,14 +159,29 @@ const SelectedTopicDetails = ({ topicId }: { topicId: number }) => {
                 </AccordionTrigger>
                 <AccordionContent className="mt-2 text-gray-600">
                   <div>
-                    <Video />
+                   <div>
+                   {selectedTopic.video_links.map((video) => (
+                      <div key={video.video_id}>
+                       <iframe
+                        src={video.url}
+                        width="100%"
+                        height="315"
+                        title={video.video_title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                      </div>
+                    ))}
+
+                   </div>
                     <div className="flex items-center space-x-4 mt-4">
                       <div className="flex items-center space-x-2">
-                        <IoMdEye className="color-600"/>
+                        <IoMdEye className="text-blue-700 w-7"/>
                         <p>{selectedTopic.video_links[0]?.total_views} views</p>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <MdDateRange />
+                        <MdDateRange className="text-blue-700"/>
                         <p>Added on {selectedTopic.video_links[0]?.added_on}</p>
                       </div>
                     </div>
@@ -177,7 +204,7 @@ const SelectedTopicDetails = ({ topicId }: { topicId: number }) => {
                               key={index}
                               className="flex items-center space-x-2"
                             >
-                              <TiTick />
+                              <TiTick className="text-blue-700"/>
                               <span>{outcome}</span>
                             </div>
                           )
@@ -192,7 +219,6 @@ const SelectedTopicDetails = ({ topicId }: { topicId: number }) => {
             )}
           </Accordion>
         </div>
-      </ScrollArea>
     </div>
   );
 };

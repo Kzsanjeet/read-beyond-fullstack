@@ -7,7 +7,7 @@
   padding: 0.5em 1em;
   outline: none;
   border: none;
-  background-color: hsl(236, 91%, 63%);
+  background-color: hsl(236, 100%, 60%);
 }
 
 #loginBtn::before {
@@ -43,7 +43,7 @@
   padding: 0.5em 1em;
   outline: none;
   border: none;
-  background-color: hsl(236, 91%, 63%);
+  background-color: hsl(236, 100%, 60%);
 }
 
 #viewCourse::before {
@@ -68,3 +68,42 @@
   transform-origin: center left;
   transform: scaleX(1);
 }
+
+
+
+#exploreButton {
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 100%, 60%);
+}
+
+#exploreButton::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsl(236, 100%, 50%);
+  font-size: 30px;
+  transform-origin: center right;
+  transform: scaleX(0);
+  transition: transform 0.25s ease-in-out;
+}
+
+#exploreButton:hover {
+  cursor: pointer;
+}
+
+#exploreButton:hover::before {
+  transform-origin: center left;
+  transform: scaleX(1);
+}
+

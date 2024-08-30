@@ -131,14 +131,14 @@ const CourseDetails = () => {
                   <div className="h-full w-[1px] bg-gray-300 mx-4" /> {/* Custom Separator */}
                   <div className="mb-4">
                     <h3 className="text-xl font-semibold flex items-center gap-2">
-                      {course.rating} <FaStarHalfStroke />
+                      {course.rating} <FaStarHalfStroke className='text-yellow-500' />
                     </h3>
                     <p className="text-gray-600 mt-2">Rating by students.</p>
                   </div>
 
                   <div className="h-full w-[1px] bg-gray-300 mx-4" /> {/* Custom Separator */}
                   <div className="mb-4">
-                    <h3 className="text-xl font-semibold flex gap-2 items-center">{course.topics.length} <MdOutlineTopic  /></h3>
+                    <h3 className="text-xl font-semibold flex gap-2 items-center">{course.topics.length} <MdOutlineTopic className='text-blue-700' /></h3>
                     <p className="text-gray-600 mt-2">Total number of topics covered in this course.</p>
                   </div>
                 </div>

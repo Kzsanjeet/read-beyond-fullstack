@@ -22,6 +22,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Progress } from '@/components/ui/progress';
+
 
 interface Course {
   id: number;
@@ -135,10 +137,11 @@ const SidebarTopic = () => {
 
                 <div className="mb-8">
                   <p className="font-semibold text-gray-700 mb-2">Progress:</p>
-                  <input
+                  {/* <input
                     type="range"
                     className="w-full h-2 bg-indigo-200 rounded-lg appearance-none cursor-pointer"
-                  />
+                  /> */}
+                  <Progress className='cursor-pointer'/>
                   <p className="text-gray-600 mt-2">10% completed</p>
                 </div>
                 <div

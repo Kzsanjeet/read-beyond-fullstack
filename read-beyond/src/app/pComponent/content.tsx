@@ -35,9 +35,9 @@ function Content() {
       </div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-12 mx-auto">
-          <div className="flex flex-wrap -m-4">
+        <div className="flex flex-wrap -m-4">
             {viewCourses.map((course) => (
-              <div key={course.id} className="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <div key={course.id} className="lg:w-1/3 md:w-1/2 p-4 w-full">
                 <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out h-[420px] bg-gray-200">
                   <a className="block relative h-48 w-full rounded-t-lg overflow-hidden">
                     <img
@@ -48,14 +48,14 @@ function Content() {
                   </a>
                   <div className="p-4 h-[202px] flex flex-col justify-between">
                     <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm text-black">{course.duration}</span>
-                      
-                      <div className="flex items-center space-x-1">
-                        <span className="text-sm text-black">{course.likes}</span>
-                        <AiFillLike className="text-sm text-black" />
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm text-black">{course.duration}</span>
+
+                        <div className="flex items-center space-x-1">
+                          <span className="text-sm text-black">{course.likes}</span>
+                          <AiFillLike className="text-sm text-black" />
+                        </div>
                       </div>
-                    </div>
                       <h1 className="text-lg font-semibold text-gray-900">{course.title}</h1>
                       <h3 className="text-xs font-medium text-blue-600 mt-1">{course.category}</h3>
                       <div className="flex items-center mt-2">
@@ -77,6 +77,7 @@ function Content() {
               </div>
             ))}
           </div>
+
         </div>
       </section>
     </div>

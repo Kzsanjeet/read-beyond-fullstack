@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import courses from "../data/courses.json";
+import { Progress } from '@/components/ui/progress';
 
 interface Course {
     id: number;
@@ -28,7 +29,7 @@ const ProfileContent = () => {
                 </div>
                 <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
                     {course.map((std_course) => (
-                        <div key={std_course.id} className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                        <div key={std_course.id} className="p-4 md:w-1/3 sm:mb-0 mb-6  hover:shadow-2xl rounded-lg transition-shadow duration-300 ease-in-out flex flex-col gap-1">
                             <div className="rounded-lg h-64 overflow-hidden">
                                 <img
                                     alt={std_course.title}
@@ -41,7 +42,7 @@ const ProfileContent = () => {
                             <label htmlFor="">
                                 <p>Progress: <span>10%</span></p>
                             </label>
-                            <input type="range"/>
+                            <Progress className='cursor-pointer bg-blue-100'/>
                             
                             {/* <a className="text-indigo-500 inline-flex items-center mt-3" href={`/courses/${std_course.slug}`}>Learn More
                                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">

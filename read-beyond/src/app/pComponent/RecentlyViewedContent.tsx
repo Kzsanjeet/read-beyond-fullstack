@@ -26,9 +26,9 @@ const RecentlyViewed = () => {
                 <div className="flex flex-col">
                     {/* You can include any other content or styling here */}
                 </div>
-                <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+                <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 ">
                     {course.map((std_course) => (
-                        <div key={std_course.id} className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                        <div key={std_course.id} className="p-4 md:w-1/3 sm:mb-0 mb-6  hover:shadow-2xl rounded-lg transition-shadow duration-300 ease-in-out ">
                             <div className="rounded-lg h-64 overflow-hidden">
                                 <img
                                     alt={std_course.title}

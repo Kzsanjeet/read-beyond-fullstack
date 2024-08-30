@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/accordion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import Video from "./Video";
 import courses from "@/app/data/courses.json";
 import topics from "@/app/data/topics.json";
 import { useParams } from "next/navigation";

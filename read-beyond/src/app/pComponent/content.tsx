@@ -38,7 +38,7 @@ function Content() {
         <div className="flex flex-wrap -m-4">
             {viewCourses.map((course) => (
               <div key={course.id} className="lg:w-1/3 md:w-1/2 p-4 w-full">
-                <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out h-[420px] bg-gray-200">
+                <div className="border border-gray-200 rounded-lg shadow-xl hover:shadow-blue-300 transition-shadow duration-300 ease-in-out h-[420px] bg-gray-200">
                   <a className="block relative h-48 w-full rounded-t-lg overflow-hidden">
                     <img
                       alt="course"

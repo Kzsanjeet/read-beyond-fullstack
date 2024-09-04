@@ -185,7 +185,7 @@
 
 
 
-#accBtn {
+#privBtn {
   z-index: 1;
   position: relative;
   font-size: inherit;
@@ -194,10 +194,10 @@
   padding: 0.5em 1em;
   outline: none;
   border: none;
-  background-color: hsl(152, 98%, 33%);
+  background-color:hsl(236, 100%, 60%);
 }
 
-#accBtn::before {
+#privBtn::before {
   content: '';
   z-index: -1;
   position: absolute;
@@ -205,18 +205,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: hsl(118, 100%, 30%);
+  background-color: hsl(236, 100%, 50%);
   font-size: 30px;
   transform-origin: center right;
   transform: scaleX(0);
   transition: transform 0.25s ease-in-out;
 }
 
-#accBtn:hover {
+#privBtn:hover {
   cursor: pointer;
 }
 
-#accBtn:hover::before {
+#privBtn:hover::before {
   transform-origin: center left;
   transform: scaleX(1);
 }

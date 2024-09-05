@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import courses from "@/app/data/courses.json";
 import { MdModeEdit } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
+import Link from 'next/link';
 
 const ProviderContent = () => {
     interface Course {
@@ -32,6 +34,7 @@ const ProviderContent = () => {
         <div>
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
+                    <h1 className='font-bold text-3xl mb-3'>Courses</h1>
                     <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
                         {course.map((prov) => (
                             <div key={prov.id} className="p-4 md:w-1/3 sm:mb-0 mb-6">
@@ -53,9 +56,11 @@ const ProviderContent = () => {
                                         <path d="M5 12h14M12 5l7 7-7 7"></path>
                                     </svg>
                                 </a> */}
-                                <div>
-                                    <button className='flex flex-row bg-blue-500 text-white pr-4 pl-4 pt-1 pb-1 gap-2 justify-center items-center rounded-lg'><MdModeEdit /> Edit</button>
-                                    <button className='flex flex-row bg-red-500 text-white pr-4 pl-4 pt-1 pb-1 gap-2 justify-center items-center rounded-lg'><MdModeEdit /> Del</button>
+                                <div className='flex justify-between items-center mt-3 m-2'>
+                                    <Link href={`/provider/courses/edit-course/${prov.slug}`}>
+                                        <button className='flex flex-row bg-blue-500 text-white pr-4 pl-4 pt-1 pb-1 gap-2 justify-center items-center rounded-lg hover:bg-blue-600'><MdModeEdit /> Edit</button>
+                                    </Link>
+                                    <button className='flex flex-row bg-red-500 text-white pr-4 pl-4 pt-1 pb-1 gap-2 justify-center items-center rounded-lg hover:bg-red-600'><MdDeleteForever /> Delete</button>
                                 </div>
                             </div>
                         ))}

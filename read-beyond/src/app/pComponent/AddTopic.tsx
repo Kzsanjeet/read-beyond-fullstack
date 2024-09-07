@@ -13,12 +13,12 @@ const AddTopic = () => {
 
   // Add a new learning outcome input field
   const addLearningOutcome = () => {
-    setLearningOutcomes([...learningOutcomes, ''])
+    setLearningOutcomes([...learningOutcomes, ''])  // ...learningOutcomes copy the all the learning outcomes and '' copy the next learning outcomes
   }
 
   // Remove a specific learning outcome input field
   const removeLearningOutcome = (index: number) => {
-    setLearningOutcomes(learningOutcomes.filter((_, i) => i !== index))
+    setLearningOutcomes(learningOutcomes.filter((_, i) => i !== index))   // it only displays the input filled that doesnt match the index
   }
 
   // Handle changes in learning outcome inputs
@@ -28,6 +28,12 @@ const AddTopic = () => {
     setLearningOutcomes(newOutcomes)
   }
 
+  // const newOut = (index:number, value:string) =>{
+  //   const newOutcomes = [...learningOutcomes]
+  //   newOutcomes[index] = value
+  //   setLearningOutcomes(newOutcomes)
+  // }
+  
   // Handle changes in all other form inputs
   const handleAllChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target

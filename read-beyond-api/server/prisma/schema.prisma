@@ -24,3 +24,25 @@ model User {
   createdAt          DateTime  @default(now())
 }
 
+model provider{
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String
+  password String    @default("")
+  avatar String      @default("")
+  contact String
+  address String
+
+  providerType String
+  documentImage String @default("")
+
+  verified Boolean @default(false)
+  createdAt DateTime   @default(now())
+  lastFivePasswords String[] @default([])
+  twoFAEnabled Boolean @default(false)
+  wrongPasswordCounter Int @default(0)
+  isPassBlockEnabled Boolean @default(false)
+  isFirstLogin Boolean @default(false)
+  refreshToken String @default("")
+  otp String @default("")
+}

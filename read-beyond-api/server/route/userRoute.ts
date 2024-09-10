@@ -1,7 +1,7 @@
 import express from "express";
 const userRouter = express.Router()
 
-import {createUser, getSpecificData, getUser, loginUser, requestToChangePassword, resetPassword, validateTokenForTwoFA} from "../controller/userController"
+import {createUser, getSpecificData, getUser, loginUser, requestToChangePassword, resetPassword, validateTokenForTwoFA} from "../controller/user/sub-controller/userController"
 
 
 userRouter.route("/register").post(createUser)

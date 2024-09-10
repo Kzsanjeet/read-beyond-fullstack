@@ -2,8 +2,8 @@ import React from 'react'
 
 const ProviderPersonRegister = () => {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-8">
+    <div className="flex justify-center items-center h-full overflow-hidden">
+      <div className="w-full max-w-lg rounded-lg p-8">
         {/* Header */}
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-bold text-blue-600">Normal Account</h1>
@@ -56,13 +56,23 @@ const ProviderPersonRegister = () => {
             />
           </div>
 
+          <div className="mb-4">
+            <label htmlFor="contact" className="block text-sm font-medium text-gray-700">Contact Number</label>
+            <input 
+              type="text" 
+              id="contact" 
+              placeholder="Contact number" 
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+          </div>
+
           {/* ID Document */}
           <div className="mb-6">
-            <label htmlFor="idDocument" className="block text-sm font-medium text-gray-700">ID Document</label>
+            <label htmlFor="idDocument" className="block text-sm font-medium text-gray-700">Citizenship Card</label>
             <input 
               type="file" 
               id="idDocument" 
-              className="mt-1 block w-full text-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full text-gray-500 border border-gray-300 file:bg-blue-600 file:text-white file:border-none file:p-2 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
 
@@ -79,6 +89,15 @@ const ProviderPersonRegister = () => {
             >
               Send Request
             </button>
+            {/* Already Have Account */}
+            <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600">
+                    Already have an account?{' '}
+                    <a href="/provider/login" className="text-blue-700 hover:underline">
+                    Login here
+                    </a>.
+                </p>
+            </div>
           </div>
         </form>
       </div>

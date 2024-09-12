@@ -4,4 +4,4 @@ const uploader = multer({
     storage:multer.diskStorage({})
 })
 
-export{uploader}
+export default uploader

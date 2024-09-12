@@ -1,46 +1,83 @@
-import prisma from "../../../utils/prisma";
-import { Response, Request } from "express";
-import { StatusCodes } from "http-status-codes";
-import { Multer } from "multer";
+import { Request, Response, NextFunction } from "express"
+import prisma from "../../../utils/prisma"
+import { StatusCodes } from "http-status-codes"
+import { uploadFile } from "../../../utils/cloudinary"
+import { Multer } from "multer"
 
 interface MulterRequest extends Request {
-    files: Express.Multer.File[];
+  file?: Express.Multer.File // 'file' for a single file upload
 }
 
-const registerProvider = async (req: Request & MulterRequest, res: Response) => {
-    try {
-        const { name, email, contact, address, providerType } = req.body;
-        const documentImages = req.files; // Files uploaded via Multer
+const registerProvider = async (
+  req: MulterRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { name, email, address, contact, providerType } = req.body
 
-        if (!name || !email || !contact || !address || !providerType || !documentImages || documentImages.length === 0) {
-            return res.status(StatusCodes.BAD_REQUEST).json({ success: false, message: "Please fill all the fields and upload a document image." });
-        }
+    // Access the uploaded file (Multer)
+    const documentFile = req.file // Use 'file' for single file
 
-        // If you're expecting one file, you can extract the first one
-        const documentImage = documentImages[0];
-        const documentImagePath = documentImage.path; // Assuming multer saves the path
+    console.log(name, email, address, contact, providerType, documentFile)
 
-        const provider = await prisma.provider.create({
-            data: {
-                name: name,
-                email: email,
-                contact: contact,
-                address: address,
-                providerType: providerType,
-                documentImage: documentImagePath, // Store the path of the uploaded image
-            }
-        });
-
-        if (!provider) {
-            return res.status(StatusCodes.BAD_REQUEST).json({ success: false, message: "Failed to create provider" });
-        }
-
-        return res.status(StatusCodes.OK).json({ success: true, message: "Provider created successfully", provider });
-
-    } catch (error) {
-        console.error(error);
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ success: false, message: "Internal Server Error" });
+    if (
+      !name ||
+      !email ||
+      !address ||
+      !contact ||
+      !providerType ||
+      !documentFile
+    ) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        success: false,
+        message: "Please fill all the fields and upload a document",
+      })
     }
-};
 
-export default registerProvider;
+    // Store the file path
+    const documentImage = documentFile.path || ""
+
+    const uploadDocs = await uploadFile(documentImage, "provider")
+
+    if (!uploadDocs) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "Failed to upload document",
+      })
+    }
+
+    console.log(uploadDocs)
+
+    // Create the provider
+    const provider = await prisma.provider.create({
+      data: {
+        name,
+        email,
+        address,
+        contact,
+        providerType,
+        documentImage: uploadDocs.secure_url,
+        documentImagId: uploadDocs.public_id
+      },
+    })
+
+    if (!provider) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        success: false,
+        message: "Failed to register provider",
+      })
+    }
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Register Request Sent successfully",
+    })
+  } catch (error: any) {
+    console.log(error)
+
+    next(error)
+  }
+}
+
+export default registerProvider

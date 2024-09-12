@@ -1,12 +1,6 @@
-import connectToDatabase from "../server/controller/dbConnect";
+import connectToDatabase from "./controller/dbConnect";
 import app from "./app";
-
-
-
-
 // Load environment variables from .env
-
-
 // Invoke the database connection
 connectToDatabase();
 

@@ -35,6 +35,7 @@ model provider{
 
   providerType String
   documentImage String @default("")
+  documentImagId String
 
   verified Boolean @default(false)
   createdAt DateTime   @default(now())

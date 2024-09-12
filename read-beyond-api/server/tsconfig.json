@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "ES2019",                    // Target ECMAScript version
+      "module": "commonjs",                  // Use commonjs modules for Node.js
+      "lib": ["ES2019", "DOM"],              // Include necessary libraries
+      "strict": true,                        // Enable all strict type-checking options
+      "esModuleInterop": true,               // Allow default imports from modules with no default export
+      "skipLibCheck": true,                  // Skip checking third-party .d.ts files
+      "moduleResolution": "node",            // Resolve modules in Node.js style
+      "outDir": "./dist",                    // Output compiled files into 'dist' folder
+      "rootDir": "./src",                    // Specify root directory of your source code
+      "sourceMap": true,                     // Generate source maps for debugging
+      "resolveJsonModule": true,             // Allow importing .json files
+      "noImplicitAny": false,                // Disallow `any` type (you can set to `true` for stricter type checking)
+      "experimentalDecorators": true,        // Enable decorators for dependency injection, etc.
+      "emitDecoratorMetadata": true,         // Emit metadata for decorators
+      "forceConsistentCasingInFileNames": true // Ensure consistent file naming across the project
+    },
+    "include": ["src/**/*.ts"],              // Include all TypeScript files in the 'src' folder
+    "exclude": ["node_modules", "dist"]      // Exclude node_modules and output directory
+  }
+  

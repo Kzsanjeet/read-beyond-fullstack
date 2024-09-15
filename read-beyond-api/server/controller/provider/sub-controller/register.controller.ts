@@ -72,6 +72,7 @@ const registerProvider = async (
     res.status(StatusCodes.OK).json({
       success: true,
       message: "Register Request Sent successfully",
+      provider
     })
   } catch (error: any) {
     console.log(error)

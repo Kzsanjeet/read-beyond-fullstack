@@ -7,7 +7,7 @@ import InstitutionRegister from "@/app/pComponent/InstitutionRegister";
 
 const RegisterPage = () => {
   const [selectRole, setSelectRole] = useState("person"); // Default to 'person'
-
+  
   // Function to return the correct component based on role selection
   const chooseRole = () => {
     if (selectRole === "person") {

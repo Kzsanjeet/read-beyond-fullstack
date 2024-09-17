@@ -16,6 +16,8 @@ const registerProvider = async (
   try {
     const { name, email, address, contact, providerType } = req.body
 
+    // console.log(req.body)
+
     // Access the uploaded file (Multer)
     const documentFile = req.file // Use 'file' for single file
 

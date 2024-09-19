@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const ProviderPersonRegister = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
-  const [tempAdd, setTempAdd] = useState('');
-  const [permanentAdd, setPermanentAdd] = useState('');
+  const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
   const [citizenshipCard, setCitizenshipCard] = useState<File | null>(null); // File handling
 
@@ -21,13 +21,13 @@ const ProviderPersonRegister = () => {
 
     // Create form data to handle both text fields and the file
     const formData = new FormData();
-    formData.append('fullname', fullname);
+    formData.append('name', fullname);
     formData.append('email', email);
-    formData.append('tempAdd', tempAdd);
-    formData.append('permanentAdd', permanentAdd);
-    formData.append('number', number);
+    formData.append('address', address);
+    formData.append('contact', number);
+    formData.append("providerType","Person")
     if (citizenshipCard) {
-      formData.append('citizenshipCard', citizenshipCard); // Append the file
+      formData.append('image', citizenshipCard); // Append the file
     }
 
     try {
@@ -42,11 +42,13 @@ const ProviderPersonRegister = () => {
       );
       const data = response.data;
       setLoading(false);
-      if (data.status === 'success') {
+      if (data.success) {
         console.log('Provider created:', data);
-        router.push("http://localhost:4000/api/v1/provider/login")
+        router.push("/provider/login")
+        toast.success("Registered successfully")
       } else {
-        setError(data.message);
+        setError("Error occured");
+        toast.error("Error occured")  
       }
     } catch (err) {
       setLoading(false);
@@ -66,7 +68,7 @@ const ProviderPersonRegister = () => {
         {/* Form */}
         <form onSubmit={handleSubmit}>
           {/* Full Name */}
-          <div className="mb-4">
+          <div className="mb-4"> 
             <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
               Full Name
             </label>
@@ -95,7 +97,7 @@ const ProviderPersonRegister = () => {
             />
           </div>
 
-          {/* Temporary Address */}
+          {/* Temporary Address
           <div className="mb-4">
             <label htmlFor="tempAddress" className="block text-sm font-medium text-gray-700">
               Temporary Address
@@ -108,19 +110,19 @@ const ProviderPersonRegister = () => {
               onChange={(e) => setTempAdd(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
-          </div>
+          </div> */}
 
           {/* Permanent Address */}
           <div className="mb-4">
             <label htmlFor="permAddress" className="block text-sm font-medium text-gray-700">
-              Permanent Address
+              Address
             </label>
             <input
               type="text"
               id="permAddress"
               placeholder="Permanent Address"
-              value={permanentAdd}
-              onChange={(e) => setPermanentAdd(e.target.value)}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
@@ -173,7 +175,7 @@ const ProviderPersonRegister = () => {
           </div>
         </form>
 
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {/* {error && <p className="text-red-500 mt-4">{error}</p>} */}
       </div>
     </div>
   );

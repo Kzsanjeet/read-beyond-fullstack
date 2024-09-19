@@ -129,6 +129,7 @@ const loginUser = async (req: Request, res: Response) => {
       });
       
       const is2FAEnable = user.twoFAEnabled
+      console.log(is2FAEnable)
       // console.log(otp)
       return res.status(200).json({ success: true, message: "OTP sent to your email and token also generated", token, is2FAEnable });
 

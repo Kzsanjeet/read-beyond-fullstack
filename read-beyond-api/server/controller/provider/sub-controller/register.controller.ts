@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import prisma from "../../../utils/prisma";
 import { StatusCodes } from "http-status-codes";
 import { uploadFile } from "../../../utils/cloudinary";
+import multer from "multer"
 
 interface MulterRequest extends Request {
   file?: Express.Multer.File; // 'file' for a single file upload

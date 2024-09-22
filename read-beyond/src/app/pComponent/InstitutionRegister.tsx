@@ -138,7 +138,7 @@ const InstitutionRegister = () => {
         
         {/* Already Have Account */}
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600"> 
             Already have an account?{' '}
             <a href="/provider/login" className="text-blue-700 hover:underline">
               Login here

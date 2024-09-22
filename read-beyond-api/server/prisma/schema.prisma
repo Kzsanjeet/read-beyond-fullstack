@@ -30,7 +30,7 @@ model provider{
   email    String
   password String    @default("")
   avatar String      @default("")
-  contact String
+  contact String     @default("")
   address String
 
   providerType String

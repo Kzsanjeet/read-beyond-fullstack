@@ -3,7 +3,7 @@
 import React, { FormEvent } from 'react'
 import toast from 'react-hot-toast';
 
-const ProviderLogin = () => {
+const AdminLogin = () => {
 
   const handleLogin = (e:FormEvent)=>{
     e.preventDefault()
@@ -17,7 +17,6 @@ const ProviderLogin = () => {
         {/* Header */}
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-blue-600">Welcom back !!!</h2>
-          <p className="text-gray-600">Access your account by providing your login details</p>
         </div>
 
         {/* Form */}
@@ -93,4 +92,4 @@ const ProviderLogin = () => {
   );
 };
 
-export default ProviderLogin
+export default AdminLogin

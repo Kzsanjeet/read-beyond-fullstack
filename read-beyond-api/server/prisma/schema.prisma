@@ -47,3 +47,20 @@ model provider{
   refreshToken String @default("")
   otp String @default("")
 }
+
+
+model Superuser{
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
+  password String    
+  avatar   String @default("")
+  contact  String     @default("")
+  lastFivePassword String[] @default([])
+  twoFAEnabled Boolean @default(false)
+  wrongPassCounter Int @default(0)
+  isPassBlockEnabled Boolean @default(false)
+  refreshToken String @default("")
+  otp String @default("")
+  createdAt DateTime @default(now())
+ }

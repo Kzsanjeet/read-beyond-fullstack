@@ -1,26 +1,55 @@
 "use client";
 
-import React, { FormEvent } from 'react'
+import axios from 'axios';
+import React, { FormEvent, useState } from 'react'
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';  // Use useRouter instead of useParams
 
 const AdminLogin = () => {
 
-  const handleLogin = (e:FormEvent)=>{
-    e.preventDefault()
-    toast.success("Login successful")
-    // toast.error("Unable to login")
-  }
-  
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState<boolean>(false)
+  const router = useRouter() // Use useRouter for routing
+
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // const formData = new FormData();
+    // formData.append("email", email);
+    // formData.append("password", password);
+
+    // console.log(formData)
+
+    try {
+      const response = await axios.post('http://localhost:4000/api/v1/admin/login', {email,password});
+
+      if (!response || !response.data.success) {
+        toast.error("Invalid credentials");
+      } else {
+        toast.success("Login successful");
+        router.push("/admin/dashboard"); // Correctly redirect using useRouter
+      }
+    } catch (error) {
+      toast.error("Unable to login");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white p-8  rounded-lg w-full max-w-md">
+
         {/* Header */}
         <div className="mb-6 text-center">
-          <h2 className="text-2xl font-bold text-blue-600">Welcom back !!!</h2>
+          <h2 className="text-2xl font-bold text-blue-600">Welcome back !!!</h2>
         </div>
 
         {/* Form */}
-        <form>
+        <form onSubmit={handleLogin}>
           {/* Email */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -30,7 +59,10 @@ const AdminLogin = () => {
               type="email"
               id="email"
               placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              required
             />
           </div>
 
@@ -42,8 +74,11 @@ const AdminLogin = () => {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
               placeholder="Enter your password"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              required
             />
           </div>
 
@@ -63,10 +98,10 @@ const AdminLogin = () => {
           <div>
             <button
               type="submit"
-              onClick={(e)=>handleLogin(e)}
               className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={loading} // Disables the button when loading is true so that multiple request could not triggered
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
           </div>
         </form>
@@ -92,4 +127,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin
+export default AdminLogin;

@@ -23,7 +23,23 @@ model User {
   refreshToken       String?
   createdAt          DateTime  @default(now())
 }
-
+ 
+model Superuser{
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
+  password String    
+  avatar   String @default("")
+  contact  String     @default("")
+  lastFivePassword String[] @default([])
+  twoFAEnabled Boolean @default(false)
+  wrongPassCounter Int @default(0)
+  isPassBlockEnabled Boolean @default(false)
+  refreshToken String @default("")
+  otp String @default("")
+  createdAt DateTime @default(now())
+ }
+ 
 model provider{
   id       Int       @id @default(autoincrement())
   name     String
@@ -47,21 +63,27 @@ model provider{
   isFirstLogin Boolean @default(false)
   refreshToken String @default("")
   otp String @default("")
+  // One-to-many relation with AddCourse
+  //courses           AddCourse[] // One provider can have multiple courses
 }
-
-
-model Superuser{
-  id       Int       @id @default(autoincrement())
-  name     String
-  email    String    @unique
-  password String    
-  avatar   String @default("")
-  contact  String     @default("")
-  lastFivePassword String[] @default([])
-  twoFAEnabled Boolean @default(false)
-  wrongPassCounter Int @default(0)
-  isPassBlockEnabled Boolean @default(false)
-  refreshToken String @default("")
-  otp String @default("")
-  createdAt DateTime @default(now())
- }
+model AddCourse {
+  id               Int      @id @default(autoincrement())
+  title            String
+  category         String
+  description      String
+  instructor       String
+  price            Int      @default(0)
+  course_time      String
+  likes            Int      @default(0)
+  student_enrolled Int      @default(0)
+  slug             String
+  course_view      Int      @default(0)
+  course_level     String
+  language         String
+  isPaid           Boolean  @default(false)
+  registered_user  Int[]    
+  providerId       Int      // Foreign key to the provider
+  
+  // Relation with provider
+  provider         provider @relation(fields: [providerId], references: [id]) 
+}

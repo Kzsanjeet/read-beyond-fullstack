@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { FormEvent, useState } from 'react'
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import {signIn} from "next-auth/react"  //
 
 const ProviderLogin = () => {
   const [email,setEmail] = useState("")
@@ -11,27 +12,50 @@ const ProviderLogin = () => {
   const [loading,setLoading] = useState<boolean>(false)
   const router = useRouter()
 
-  const handleLogin = async(e:FormEvent)=>{
+  // const handleLogin = async(e:FormEvent)=>{
+  //   e.preventDefault()
+  //   setLoading(true)
+
+  //   try {
+  //     const response = await axios.post('http://localhost:4000/provider/login',{email,password})
+    
+  //       if(!response || !response.data.success){
+  //         toast.error(response.data.message)
+  //       }else{
+  //         toast.success(response.data.message)
+  //         router.push("/provider")
+  //       }
+
+  //     } catch (error) {
+  //       toast.error("Unable to login")
+  //       console.error(error)
+  //     }finally{
+  //     setLoading(false)
+  //   }
+  // }
+
+  const handleLogin = async(e:FormEvent) =>{
     e.preventDefault()
     setLoading(true)
-
     try {
-      const response = await axios.post('http://localhost:4000/provider/login',{email,password})
-    
-        if(!response || !response.data.success){
-          toast.error(response.data.message)
-        }else{
-          toast.success(response.data.message)
-          router.push("/provider")
-        }
-
-      } catch (error) {
-        toast.error("Unable to login")
-        console.error(error)
-      }finally{
-      setLoading(false)
+      const result = await signIn("Provider Login",{
+        email,
+        password,
+        redirect : false
+      })
+      if(result?.ok){
+        router.push("/provider")
+        toast.success("Login in successfully")
+        setLoading(false)
+      }else{
+        toast.error("Invalid credentials")
+        setLoading(false)
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
+
   
   return (
     <div className="flex justify-center items-center h-screen">
@@ -43,7 +67,7 @@ const ProviderLogin = () => {
         </div>
 
         {/* Form */}
-        <form>
+        <form onSubmit={handleLogin}>
           {/* Email */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -67,7 +91,7 @@ const ProviderLogin = () => {
             <input
               type="password"
               id="password"
-              value={email}
+              value={password}
               onChange={(e)=>setPassword(e.target.value)}
               placeholder="Enter your password"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"

@@ -1,39 +1,63 @@
 "use client";
 
-import axios from 'axios';
-import React, { FormEvent, useState } from 'react'
-import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';  // Use useRouter instead of useParams
+import axios from "axios";
+import React, { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation"; // Use useRouter instead of useParams
+import { signIn } from "next-auth/react";
 
 const AdminLogin = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter(); // Use useRouter for routing
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState<boolean>(false)
-  const router = useRouter() // Use useRouter for routing
+//   // const handleLogin = async (e: FormEvent) => {
+//   //   e.preventDefault();
+//   //   setLoading(true);
+
+//   //   // const formData = new FormData();
+//   //   // formData.append("email", email);
+//   //   // formData.append("password", password);
+
+//   //   // console.log(formData)
+
+//   //   try {
+//   //     const response = await axios.post('http://localhost:4000/api/v1/admin/login', {email,password});
+
+//   //     if (!response || !response.data.success) {
+//   //       toast.error("Invalid credentials");
+//   //     } else {
+//   //       toast.success("Login successful");
+//   //       router.push("/admin/dashboard"); // Correctly redirect using useRouter
+//   //     }
+//   //   } catch (error) {
+//   //     toast.error("Unable to login");
+//   //     console.error(error);
+//   //   } finally {
+//   //     setLoading(false);
+//   //   }
+//   // };
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    // const formData = new FormData();
-    // formData.append("email", email);
-    // formData.append("password", password);
-
-    // console.log(formData)
-
     try {
-      const response = await axios.post('http://localhost:4000/api/v1/admin/login', {email,password});
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // Don't redirect on the server, handle it on the client
+      });
 
-      if (!response || !response.data.success) {
-        toast.error("Invalid credentials");
-      } else {
+      if (result?.ok) {
         toast.success("Login successful");
-        router.push("/admin/dashboard"); // Correctly redirect using useRouter
+        router.push("/admin/dashboard"); // Redirect to admin dashboard
+      } else {
+        toast.error("Invalid credentials");
       }
-    } catch (error) {
-      toast.error("Unable to login");
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Unable to login");
+      console.error("Login Error:", error);
     } finally {
       setLoading(false);
     }
@@ -41,8 +65,7 @@ const AdminLogin = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-white p-8  rounded-lg w-full max-w-md">
-
+      <div className="bg-white p-8 rounded-lg w-full max-w-md">
         {/* Header */}
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-blue-600">Welcome back !!!</h2>
@@ -75,7 +98,7 @@ const AdminLogin = () => {
               type="password"
               id="password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               required
@@ -98,8 +121,10 @@ const AdminLogin = () => {
           <div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              disabled={loading} // Disables the button when loading is true so that multiple request could not triggered
+              className={`w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md ${
+                loading ? "cursor-not-allowed opacity-50" : "hover:bg-blue-700"
+              } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+              disabled={loading}
             >
               {loading ? "Logging in..." : "Login"}
             </button>
@@ -116,7 +141,7 @@ const AdminLogin = () => {
         {/* Create Account */}
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            Don't have an account?{" "}
             <a href="/provider/register" className="text-blue-600 hover:underline">
               Sign up here
             </a>

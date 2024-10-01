@@ -64,7 +64,7 @@ model provider{
   refreshToken String @default("")
   otp String @default("")
   // One-to-many relation with AddCourse
-  //courses           AddCourse[] // One provider can have multiple courses
+  courses           AddCourse[] // One provider can have multiple courses
 }
 model AddCourse {
   id               Int      @id @default(autoincrement())
@@ -85,5 +85,5 @@ model AddCourse {
   providerId       Int      // Foreign key to the provider
   
   // Relation with provider
-  provider         provider @relation(fields: [providerId], references: [id]) 
+  provider         provider @relation(fields: [providerId], references: [id],onDelete: Cascade) 
 }
